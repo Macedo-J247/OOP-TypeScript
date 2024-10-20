@@ -12,12 +12,12 @@
 | Atributo               | Sistema em que não é importante | Sistema em que é moderadamente importante | Sistema em que é essencial |
 |------------------------|---------------------------------|-------------------------------------------|----------------------------|
 |CPF                     | Rede social                     | Serviço de assinatura                     | Abertura de conta bancária |
-|Histórico de Saúde      | Aplicativo de entretenimento    | Academia                                  | Hospital
-|Quantidade de seguidores| E-mail                          | Blogs pessoal                             | Rede Social
-|Habilidade destra       | Leitura de livros               | Trabalho com ferramenta manual             | Esportes profissionais   |
-|Endereço                | Rede social                     | Cadastros                                 |Serviços públicos
-|Saldo em conta          | E-mail                          | Serviço de assinatura                     | Banco
-|Etnia                   | E-mail                          | Programa de mercado                       | Censo
+|Histórico de Saúde      | Aplicativo de entretenimento    | Academia                                  | Hospital                   |
+|Quantidade de seguidores| E-mail                          | Blogs pessoal                             | Rede Social                |
+|Habilidade destra       | Leitura de livros               | Trabalho com ferramenta manual            | Esportes profissionais     |
+|Endereço                | Rede social                     | Cadastros                                 | Serviços públicos          |
+|Saldo em conta          | E-mail                          | Serviço de assinatura                     | Banco                      |
+|Etnia                   | E-mail                          | Programa de mercado                       | Censo                      |
 
 > 4. A) Sim, ter o nome da pessoa como atributo permite a gestão e associação de informações a conta dela.
 
