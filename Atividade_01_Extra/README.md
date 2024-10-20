@@ -8,16 +8,16 @@
 >    Atributos: velocidades, potência, tamanho, cor, tipo de hélice, oscilação e material.
 >    Métodos: ligar, desligar, ligar oscilação, desligar oscilção, ajustar inclinação, alterar velocidade.
 
-> 3. Tabela\br:
-| Atributo | Sistema em que não é importante | Sistema em que é moderadamente importante | Sistema em que é essencial |
-|:--------:|---------------------------------|-------------------------------------------|----------------------------|
-|CPF|
-|Histórico de Saúde|
+> 3. Tabela<br>:
+| Atributo               | Sistema em que não é importante | Sistema em que é moderadamente importante | Sistema em que é essencial |
+|:----------------------:|---------------------------------|-------------------------------------------|----------------------------|
+|CPF                     |
+|Histórico de Saúde      |
 |Quantidade de seguidores|
-|Habilidade destra|
-|Endereço|
-|Saldo em conta|
-|Etinia|
+|Habilidade destra       |
+|Endereço                |
+|Saldo em conta          |
+|Etinia                  |
 
 > 4. A) Sim, ter o nome da pessoa como atributo permite a gestão e associação de informações a conta dela.
 
