@@ -19,9 +19,9 @@
 |Saldo em conta|
 |Etinia|
 
-> 4.a Sim, ter o nome da pessoa como atributo permite a gestão e associação de informações a conta dela.
+> 4. A) Sim, ter o nome da pessoa como atributo permite a gestão e associação de informações a conta dela.
 
-> 4.b Sim, pois é útil para representar diferentes tipos de conta que uma pessoa tem em um banco, como conta corrente e poupança. O recurso de programação estruturada que representaria isso são as listas ou arrays.
+> 4. B) Sim, pois é útil para representar diferentes tipos de conta que uma pessoa tem em um banco, como conta corrente e poupança. O recurso de programação estruturada que representaria isso são as listas ou arrays.
 
 > 5. Secretaria, Biblioteca, Suporte Técnico, Notificações e Calendário Acadêmico
 
