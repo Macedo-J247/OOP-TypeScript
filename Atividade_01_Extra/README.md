@@ -8,6 +8,8 @@
      Atributos: velocidades, potência, tamanho, cor, tipo de hélice, oscilação e material.
      Métodos: ligar, desligar, ligar oscilação, desligar oscilção, ajustar inclinação, alterar velocidade.
 
+> 3. Tabela: 
+
 | Atributo               | Sistema em que não é importante | Sistema em que é moderadamente importante | Sistema em que é essencial |
 |------------------------|---------------------------------|-------------------------------------------|----------------------------|
 |CPF                     | Rede social                     | Serviço de assinatura                     | Abertura de conta bancária |
