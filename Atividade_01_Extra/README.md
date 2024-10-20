@@ -11,7 +11,7 @@
 > 3. Tabela: 
 
 | Atributo               | Sistema em que não é importante | Sistema em que é moderadamente importante | Sistema em que é essencial |
-|------------------------|---------------------------------|-------------------------------------------|----------------------------|
+|:----------------------:|:-------------------------------:|:-----------------------------------------:|:--------------------------:|
 |CPF                     | Rede social                     | Serviço de assinatura                     | Abertura de conta bancária |
 |Histórico de Saúde      | Aplicativo de entretenimento    | Academia                                  | Hospital                   |
 |Quantidade de seguidores| E-mail                          | Blogs pessoal                             | Rede Social                |
