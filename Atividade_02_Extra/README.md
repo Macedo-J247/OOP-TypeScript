@@ -1,3 +1,7 @@
 # Respostas das questões discursivas:
 
-Exércicio - 02 Extra
+## Exercício - 02 Extra
+
+> 1. A) Abstração.
+>    B) Encapsulamento.
+>    C) Construtor.
