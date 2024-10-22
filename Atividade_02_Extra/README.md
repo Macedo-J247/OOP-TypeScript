@@ -16,7 +16,7 @@
 
 > 3. Objeto, classe e atributo.
 
-> 4. let conta: Conta = new Conta();<br>
+> 4. let conta : Conta = new Conta();<br>
 >    ------1------2-------3-----4<br>
 >    (4) Contrutor;<br>
 >    (3) Operador de instanciação;<br>
