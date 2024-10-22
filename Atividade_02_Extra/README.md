@@ -2,6 +2,6 @@
 
 ## Exercício - 02 Extra
 
-> 1. A) Abstração.\n
->    B) Encapsulamento.\n
+> 1. A) Abstração.<br>
+>    B) Encapsulamento.<br>
 >    C) Construtor.
