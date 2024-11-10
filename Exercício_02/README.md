@@ -10,4 +10,4 @@
 
 > 4. a
 
-> 5. a
+> 5. Não exatamente, a tipagem fraca diz respeito à capacidade de uma linguagem de converter automaticamente tipos diferentes e permitir que operações sejam feitas.
