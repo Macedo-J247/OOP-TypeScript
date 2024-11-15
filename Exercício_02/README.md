@@ -6,7 +6,19 @@
 
 > 2. O principal problema da tipagem dinâmica envolve erros de tipos detectáveis apenas em tempo de execução, o que acarreta em bugs despercebidos durante o desenvolvimento, resultando em falhas mais complexas.
 
-> 3. a
+> 3. ~~~javascript
+>    function add(a: any, b: any): any
+>      {
+>        return a + b;
+>      }
+>
+>    let result1 = add(5, 10);
+>    >>> 15
+>    let result2 = add("5", 10);
+>    >>> 510
+>    let result3 = add(true, 10);
+>    >>> 11
+>    ~~~
 
 > 4. a
 
