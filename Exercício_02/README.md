@@ -6,7 +6,8 @@
 
 > 2. O principal problema da tipagem dinâmica envolve erros de tipos detectáveis apenas em tempo de execução, o que acarreta em bugs despercebidos durante o desenvolvimento, resultando em falhas mais complexas.
 
-> 3. ~~~javascript
+> 3. Exemplo:
+>    ~~~javascript
 >    function add(a: any, b: any): any
 >      {
 >        return a + b;
@@ -20,6 +21,23 @@
 >    >>> 11
 >    ~~~
 
-> 4. a
+> 4. A linguagem C é considerada de tipagem fraca por causa da sua capacidade de converter automaticamente tipos diferentes e permitir operações entre eles sem muitas restrições.
+>    Exemplo:
+>    ~~~C
+>    #include <stdio.h>
+>
+>    int main()
+>      {
+>        int a = 10;
+>        char b = "A";
+>        int c = a + b;
+>
+>        printf("%d\n", c);
+>
+>        return 0;
+>      }
+>
+>    >>> 75
+>    ~~~
 
 > 5. Não exatamente, a tipagem fraca diz respeito à capacidade de uma linguagem de converter automaticamente tipos diferentes e permitir que operações sejam feitas.
