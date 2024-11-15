@@ -21,7 +21,7 @@
 >    >>> 11
 >    ~~~
 
-> 4. A linguagem C é considerada de tipagem fraca por causa da sua capacidade de converter automaticamente tipos diferentes e permitir operações entre eles sem muitas restrições.
+> 4. A linguagem C é considerada de tipagem fraca por causa da sua capacidade de converter automaticamente tipos diferentes e permitir operações entre eles sem muitas restrições. <br>
 >    Exemplo:
 >    ~~~C
 >    #include <stdio.h>
