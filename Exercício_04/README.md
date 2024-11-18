@@ -49,7 +49,7 @@
 >    r.volume = 10;
 >    ```
 
-> 5. A) 140, 140 e 140. Todas as variáveis referenciam o mesmo objeto.
->    B) O objeto para o qual `c1` apontava será coletado pelo `garbage collector`, por não haver mais referências a ele.
+> 5. A) 140, 140 e 140. Todas as variáveis referenciam o mesmo objeto.<br>
+> 5. B) O objeto para o qual `c1` apontava será coletado pelo `garbage collector`, por não haver mais referências a ele.
 
 > 11.  Retornar códigos de erro como na questão 9 é útil para fornecer feedback explicitamente sobre o sucesso ou falaha de uma operação, permitindo que o código chamador tome decisões com base nos resultados.
