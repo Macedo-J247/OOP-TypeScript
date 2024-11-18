@@ -13,7 +13,7 @@
 > 2. Sim, variáveis de instância não inicializadas explicitamente, em TypeScript, resultam em `undefined`, que resulta em erro ao tentar incrementar-lo.
 
 > 3. Resposta:
->    ```javascript
+>    ```JavaScript
 >    class Hotel
 >      {
 >        quantReservas: number;
@@ -32,3 +32,21 @@
 >    console.log(hotel.quantReservas);
 >    >>> 2
 >    ```
+
+> 4. O construtor da classe exige um parâmetro para a inicialização, mas o ao instanciar, nenhum argumento foi passado.<br>
+> Solução:
+>    ```JavaScript
+>    class Radio
+>      {
+>        volume: number:
+>        constructor(volume: number)
+>          {
+>            this.volume = volume;
+>          }
+>      }
+>
+>    let r: Radio = new Radio(0);
+>    r.volume = 10;
+>    ```
+
+> 5. a
