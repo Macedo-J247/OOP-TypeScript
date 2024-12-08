@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Banco</h1>
+    <div id="app">
+        <div>
+            <h2>Inserir Conta</h2>
+            <input type="text" id="numeroConta" placeholder="Número da Conta">
+            <button id="btnInserirConta">Inserir</button>
+        </div>
+        <div>
+            <h2>Consultar Conta</h2>
+            <input type="text" id="numeroConsulta" placeholder="Número da Conta">
+            <button id="btnConsultarConta">Consultar</button>
+            <div id="resultadoConsulta"></div>
+        </div>
+        <div>
+            <h2>Sacar</h2>
+            <input type="text" id="numeroSaque" placeholder="Número da Conta">
+            <input type="number" id="valorSaque" placeholder="Valor">
+            <button id="btnSacar">Sacar</button>
+        </div>
+        <div>
+            <h2>Depositar</h2>
+            <input type="text" id="numeroDeposito" placeholder="Número da Conta">
+            <input type="number" id="valorDeposito" placeholder="Valor">
+            <button id="btnDepositar">Depositar</button>
+        </div>
+        <div>
+            <h2>Transferir</h2>
+            <input type="text" id="numeroOrigem" placeholder="Número da Conta Origem">
+            <input type="text" id="numeroDestino" placeholder="Número da Conta Destino">
+            <input type="number" id="valorTransferencia" placeholder="Valor">
+            <button id="btnTransferir">Transferir</button>
+        </div>
+        <div>
+            <h2>Listar Contas</h2>
+            <button id="btnListarContas">Listar</button>
+            <div id="listaContas"></div>
+        </div>
+    </div>
+    <script src="app.js" defer></script>
+</body>
+</html>
