@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Bancário</title>
+</head>
+<body>
+
+<script>
+class Conta {
+    constructor(id, numero, saldo, cliente = null) {
+        this.id = id;
+        this.numero = numero;
+        this.saldo = saldo;
+        this.cliente = cliente;
+    }
+    sacar(valor) {
+        if (this.saldo - valor < 0) {
+            return false;
+        }
+        this.saldo -= valor;
+        return true;
+    }
+    depositar(valor) {
+        this.saldo += valor;
+    }
+    consultarSaldo() {
+        return this.saldo;
+    }
+    transferir(destino, valor) {
+        if (this.sacar(valor)) {
+            destino.depositar(valor);
+            return true;
+        }
+        return false;
+    }
+    mudarTitular(novoTitular) {
+        this.cliente = novoTitular;
+    }
+}
+
+class Cliente {
+    constructor(id, nome, cpf, data_nascimento, contas = []) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.data_nascimento = new Date(data_nascimento);
+        this.contas = contas;
+    }
+    excluirConta(numeroConta) {
+        const indice = this.contas.findIndex(conta => conta.numero === numeroConta);
+        if (indice !== -1) {
+            this.contas.splice(indice, 1);
+        } else {
+            console.log("Conta não encontrada para o cliente.");
+        }
+    }
+}
+
+class Banco {
+    constructor() {
+        this.clientes = [];
+        this.contas = [];
+    }
+
+    // Inserir uma nova conta
+    inserirConta(conta) {
+        const contaExistente = this.contas.find(c => c.numero === conta.numero);
+        if (!contaExistente) {
+            this.contas.push(conta);
+        } else {
+            alert("Conta já cadastrada.");
+        }
+    }
+
+    // Consultar uma conta
+    consultarConta(numero) {
+        return this.contas.find(conta => conta.numero === numero);
+    }
+
+    // Consultar o índice de uma conta
+    consultarIndiceConta(numero) {
+        return this.contas.findIndex(conta => conta.numero === numero);
+    }
+
+    // Alterar uma conta
+    alterarConta(conta) {
+        const indice = this.consultarIndiceConta(conta.numero);
+        if (indice !== -1) {
+            this.contas[indice] = conta;
+        }
+    }
+
+    // Excluir uma conta
+    excluirConta(numero) {
+        const indice = this.consultarIndiceConta(numero);
+        if (indice !== -1) {
+            this.contas.splice(indice, 1);
+        }
+    }
+
+    // Depositar em uma conta
+    depositar(numero, valor) {
+        const conta = this.consultarConta(numero);
+        if (conta) {
+            conta.depositar(valor);
+        }
+    }
+
+    // Sacar de uma conta
+    sacar(numero, valor) {
+        const conta = this.consultarConta(numero);
+        if (conta) {
+            conta.sacar(valor);
+        }
+    }
+
+    // Transferir entre contas
+    transferir(numeroOrigem, numeroDestino, valor) {
+        const contaOrigem = this.consultarConta(numeroOrigem);
+        const contaDestino = this.consultarConta(numeroDestino);
+        if (contaOrigem && contaDestino) {
+            contaOrigem.sacar(valor);
+            contaDestino.depositar(valor);
+        }
+    }
+
+    // Transferir para múltiplas contas
+    transferirParaMultiplasContas(numeroOrigem, contasDestino, valor) {
+        const contaOrigem = this.consultarConta(numeroOrigem);
+        if (contaOrigem) {
+            const valorPorConta = valor / contasDestino.length;
+            contasDestino.forEach(numeroDestino => {
+                const contaDestino = this.consultarConta(numeroDestino);
+                if (contaDestino) {
+                    contaOrigem.sacar(valorPorConta);
+                    contaDestino.depositar(valorPorConta);
+                }
+            });
+        }
+    }
+
+    // Inserir um novo cliente
+    inserirCliente(cliente) {
+        const clienteExistente = this.clientes.find(c => c.cpf === cliente.cpf);
+        if (!clienteExistente) {
+            this.clientes.push(cliente);
+        } else {
+            alert("Cliente já cadastrado.");
+        }
+    }
+
+    // Consultar um cliente pelo CPF
+    consultarCliente(cpf) {
+        return this.clientes.find(cliente => cliente.cpf === cpf);
+    }
+
+    // Excluir um cliente
+    excluirCliente(cpf) {
+        const cliente = this.consultarCliente(cpf);
+        if (cliente) {
+            cliente.contas.forEach(conta => {
+                conta.cliente = null;
+            });
+            const indice = this.clientes.findIndex(c => c.cpf === cpf);
+            if (indice !== -1) {
+                this.clientes.splice(indice, 1);
+            }
+        } else {
+            alert("Cliente não encontrado.");
+        }
+    }
+
+    // Associar uma conta a um cliente
+    associarContaCliente(numeroConta, cpfCliente) {
+        const cliente = this.consultarCliente(cpfCliente);
+        const conta = this.consultarConta(numeroConta);
+        if (cliente && conta && !conta.cliente) {
+            cliente.contas.push(conta);
+            conta.cliente = cliente;
+            alert("Cliente vinculado à conta com sucesso!");
+        } else {
+            alert("Cliente ou conta não encontrados, ou conta já possui um titular.");
+        }
+    }
+
+    // Listar todas as contas
+    listarContas() {
+        return this.contas;
+    }
+
+    // Listar contas sem titular
+    listarContasSemTitular() {
+        return this.contas.filter(conta => !conta.cliente);
+    }
+}
+
+const banco = new Banco();
+
+// Função para exibir o menu
+function exibirMenu() {
+    const opcao = prompt(
+        `Escolha uma opção:
+        1 - Cadastrar Cliente
+        2 - Cadastrar Conta
+        3 - Consultar Saldo de Conta
+        4 - Sacar
+        5 - Depositar
+        6 - Transferir entre contas
+        7 - Transferir para múltiplas contas
+        8 - Excluir Conta
+        9 - Excluir Cliente
+        10 - Verificar Quantidade de Contas
+        11 - Ver Total de Dinheiro Depositado
+        12 - Ver Média de Saldo das Contas
+        13 - Listar todas as Contas
+        14 - Listar Contas sem Titular
+        15 - Vincular Cliente a Conta
+        16 - Sair`
+    );
+
+    switch (opcao) {
+        case '1':
+            cadastrarCliente();
+            break;
+        case '2':
+            cadastrarConta();
+            break;
+        case '3':
+            consultarSaldo();
+            break;
+        case '4':
+            sacar();
+            break;
+        case '5':
+            depositar();
+            break;
+        case '6':
+            transferir();
+            break;
+        case '7':
+            transferirParaMultiplasContas();
+            break;
+        case '8':
+            excluirConta();
+            break;
+        case '9':
+            excluirCliente();
+            break;
+        case '10':
+            verificarQuantidadeContas();
+            break;
+        case '11':
+            verificarTotalDepositado();
+            break;
+        case '12':
+            verificarMediaSaldo();
+            break;
+        case '13':
+            listarContas();
+            break;
+        case '14':
+            listarContasSemTitular();
+            break;
+        case '15':
+            vincularClienteConta();
+            break;
+        case '16':
+            alert("Saindo...");
+            return;
+        default:
+            alert("Opção inválida. Tente novamente.");
+            break;
+    }
+
+    exibirMenu(); // Exibe o menu novamente após a opção
+}
+
+// Função para cadastrar um cliente
+function cadastrarCliente() {
+    const id = prompt("Digite o ID do cliente:");
+    const nome = prompt("Digite o nome do cliente:");
+    const cpf = prompt("Digite o CPF do cliente:");
+    const dataNascimento = prompt("Digite a data de nascimento do cliente (formato: yyyy-mm-dd):");
+    const cliente = new Cliente(id, nome, cpf, dataNascimento);
+    banco.inserirCliente(cliente);
+    alert("Cliente cadastrado com sucesso!");
+}
+
+// Função para cadastrar uma conta
+function cadastrarConta() {
+    const id = prompt("Digite o ID da conta:");
+    const numero = prompt("Digite o número da conta:");
+    const saldo = parseFloat(prompt("Digite o saldo da conta:"));
+    const conta = new Conta(id, numero, saldo);
+    banco.inserirConta(conta);
+    alert("Conta cadastrada com sucesso!");
+}
+
+// Função para consultar o saldo de uma conta
+function consultarSaldo() {
+    const numero = prompt("Digite o número da conta para consultar o saldo:");
+    const conta = banco.consultarConta(numero);
+    if (conta) {
+        alert(`O saldo da conta ${numero} é: R$ ${conta.consultarSaldo()}`);
+    } else {
+        alert("Conta não encontrada.");
+    }
+}
+
+// Função para sacar de uma conta
+function sacar() {
+    const numero = prompt("Digite o número da conta para sacar:");
+    const valor = parseFloat(prompt("Digite o valor a ser sacado:"));
+    banco.sacar(numero, valor);
+    alert("Saque realizado.");
+}
+
+// Função para depositar em uma conta
+function depositar() {
+    const numero = prompt("Digite o número da conta para depositar:");
+    const valor = parseFloat(prompt("Digite o valor a ser depositado:"));
+    banco.depositar(numero, valor);
+    alert("Depósito realizado.");
+}
+
+// Função para transferir entre contas
+function transferir() {
+    const numeroOrigem = prompt("Digite o número da conta de origem:");
+    const numeroDestino = prompt("Digite o número da conta de destino:");
+    const valor = parseFloat(prompt("Digite o valor a ser transferido:"));
+    banco.transferir(numeroOrigem, numeroDestino, valor);
+    alert("Transferência realizada.");
+}
+
+// Função para transferir para múltiplas contas
+function transferirParaMultiplasContas() {
+    const numeroOrigem = prompt("Digite o número da conta de origem:");
+    const contasDestino = prompt("Digite os números das contas de destino separados por vírgula:").split(",");
+    const valor = parseFloat(prompt("Digite o valor total a ser transferido:"));
+    banco.transferirParaMultiplasContas(numeroOrigem, contasDestino, valor);
+    alert("Transferência para múltiplas contas realizada.");
+}
+
+// Função para excluir uma conta
+function excluirConta() {
+    const numero = prompt("Digite o número da conta a ser excluída:");
+    banco.excluirConta(numero);
+    alert("Conta excluída.");
+}
+
+// Função para excluir um cliente
+function excluirCliente() {
+    const cpf = prompt("Digite o CPF do cliente a ser excluído:");
+    banco.excluirCliente(cpf);
+    alert("Cliente excluído.");
+}
+
+// Função para verificar a quantidade de contas
+function verificarQuantidadeContas() {
+    alert(`Quantidade de contas cadastradas: ${banco.contas.length}`);
+}
+
+// Função para verificar o total de dinheiro depositado
+function verificarTotalDepositado() {
+    alert(`Total de dinheiro depositado: R$ ${banco.contas.reduce((total, conta) => total + conta.consultarSaldo(), 0)}`);
+}
+
+// Função para verificar a média de saldo das contas
+function verificarMediaSaldo() {
+    const totalContas = banco.contas.length;
+    if (totalContas === 0) {
+        alert("Não há contas cadastradas.");
+    } else {
+        const mediaSaldo = banco.contas.reduce((total, conta) => total + conta.consultarSaldo(), 0) / totalContas;
+        alert(`Média de saldo das contas: R$ ${mediaSaldo}`);
+    }
+}
+
+// Função para listar todas as contas
+function listarContas() {
+    const contas = banco.listarContas();
+    if (contas.length === 0) {
+        alert("Não há contas cadastradas.");
+    } else {
+        let listaContas = "Contas cadastradas:\n";
+        contas.forEach(conta => {
+            listaContas += `ID: ${conta.id}, Número: ${conta.numero}, Saldo: R$ ${conta.consultarSaldo()}\n`;
+        });
+        alert(listaContas);
+    }
+}
+
+// Função para listar contas sem titular
+function listarContasSemTitular() {
+    const contasSemTitular = banco.listarContasSemTitular();
+    if (contasSemTitular.length === 0) {
+        alert("Não há contas sem titular.");
+    } else {
+        let listaContas = "Contas sem titular:\n";
+        contasSemTitular.forEach(conta => {
+            listaContas += `ID: ${conta.id}, Número: ${conta.numero}, Saldo: R$ ${conta.consultarSaldo()}\n`;
+        });
+        alert(listaContas);
+    }
+}
+
+// Função para vincular um cliente a uma conta
+function vincularClienteConta() {
+    const numeroConta = prompt("Digite o número da conta:");
+    const cpfCliente = prompt("Digite o CPF do cliente:");
+    banco.associarContaCliente(numeroConta, cpfCliente);
+}
+
+exibirMenu();
+</script>
+
+</body>
+</html>
